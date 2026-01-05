@@ -24,7 +24,7 @@ return new class extends Migration
             $table->timestamp('scheduled_at')->nullable();
             $table->timestamp('sent_at')->nullable();
             $table->json('stats')->nullable();
-            $table->foreignId('created_by')->constrained('admins');
+            $table->foreignId('created_by')->nullable()->constrained('users');
             $table->timestamps();
 
             $table->index(['event_id', 'status', 'scheduled_at']);

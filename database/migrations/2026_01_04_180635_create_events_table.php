@@ -27,7 +27,7 @@ return new class extends Migration
             $table->integer('max_participants')->default(0);
             $table->enum('status', ['draft', 'published', 'ongoing', 'completed', 'cancelled'])->default('draft');
             $table->json('meta_data')->nullable();
-            $table->foreignId('created_by')->nullable()->constrained('admins');
+            $table->foreignId('created_by')->nullable()->constrained('users');
             $table->timestamps();
             $table->softDeletes();
 
