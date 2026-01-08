@@ -1,171 +1,157 @@
-import React, { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
-import {
-    Play,
-    ChevronRight,
-    Star,
-    Users,
-    Award,
-    Clock,
-    Code2,
-    Cpu,
-} from "lucide-react";
+import React from "react";
+import { motion } from "framer-motion";
+import PrimaryButton from "@/Components/PrimaryButton";
+import { ArrowRight, Sparkles, Calendar, Users, Globe } from "lucide-react";
+import { Link } from "@inertiajs/react";
 
 export default function HeroSection() {
-    const [count, setCount] = useState({ enrolled: 0, rating: 4.9 });
-
-    // Count animation effect
-    useEffect(() => {
-        const timer = setTimeout(() => {
-            setCount((prev) => ({ ...prev, enrolled: 1247 }));
-        }, 500);
-        return () => clearTimeout(timer);
-    }, []);
-
-    const fadeInUp = {
-        initial: { opacity: 0, y: 30 },
-        animate: { opacity: 1, y: 0 },
-        transition: { duration: 0.6, ease: "easeOut" },
-    };
-
     return (
-        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-[#0a0a0c] text-white">
-            {/* 1. Dynamic Background */}
-            <div className="absolute inset-0 z-0">
-                <div className="absolute top-[-10%] left-[-10%] w-[50%] h-[50%] bg-indigo-600/20 rounded-full blur-[120px] animate-pulse" />
-                <div className="absolute bottom-[-10%] right-[-10%] w-[50%] h-[50%] bg-purple-600/20 rounded-full blur-[120px] animate-pulse delay-700" />
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-20 brightness-100 contrast-150"></div>
+        <section className="relative min-h-screen flex items-center justify-center overflow-hidden bg-slate-950 px-4 sm:px-6 lg:px-8">
+            {/* Animated gradient background */}
+            <div className="absolute inset-0">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-900/30 via-slate-950 to-cyan-900/30" />
+                <motion.div
+                    className="absolute top-1/4 left-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-purple-500/30 rounded-full blur-3xl"
+                    animate={{
+                        x: [0, 30, 0],
+                        y: [0, 20, 0],
+                        scale: [1, 1.1, 1],
+                    }}
+                    transition={{
+                        duration: 8,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
+                <motion.div
+                    className="absolute bottom-1/4 right-1/4 w-64 h-64 sm:w-80 sm:h-80 md:w-96 md:h-96 bg-cyan-500/30 rounded-full blur-3xl"
+                    animate={{
+                        x: [0, -30, 0],
+                        y: [0, -20, 0],
+                        scale: [1, 1.2, 1],
+                    }}
+                    transition={{
+                        duration: 10,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
+                <motion.div
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[300px] h-[300px] sm:w-[400px] sm:h-[400px] md:w-[600px] md:h-[600px] bg-pink-500/20 rounded-full blur-3xl"
+                    animate={{
+                        scale: [1, 1.3, 1],
+                        opacity: [0.2, 0.4, 0.2],
+                    }}
+                    transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                    }}
+                />
             </div>
 
-            {/* 2. Floating Tech Elements (Senior Dev Aesthetic) */}
-            <motion.div
-                animate={{ y: [0, -20, 0] }}
-                transition={{
-                    duration: 5,
-                    repeat: Infinity,
-                    ease: "easeInOut",
-                }}
-                className="absolute top-1/4 left-10 hidden xl:block p-4 bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl shadow-2xl"
-            >
-                <Code2 className="w-8 h-8 text-cyan-400" />
-                <div className="mt-2 h-1.5 w-12 bg-gray-700 rounded-full overflow-hidden">
-                    <motion.div
-                        initial={{ x: -50 }}
-                        animate={{ x: 50 }}
-                        transition={{ repeat: Infinity, duration: 2 }}
-                        className="h-full w-1/2 bg-cyan-400"
-                    />
-                </div>
-            </motion.div>
+            {/* Grid pattern overlay - adjusted opacity for better readability */}
+            <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0wIDBoNjB2NjBIMHoiLz48cGF0aCBkPSJNMzAgMzBtLTEgMGExIDEgMCAxIDAgMiAwYTEgMSAwIDEgMCAtMiAwIiBmaWxsPSJyZ2JhKDI1NSwyNTUsMjU1LDAuMDUpIi8+PC9nPjwvc3ZnPg==')] opacity-30" />
 
-            <div className="container relative z-10 mx-auto px-6 py-20 text-center">
-                {/* Badge */}
+            <div className="relative z-10 w-full max-w-7xl mx-auto text-center py-10 md:py-0">
                 <motion.div
-                    {...fadeInUp}
-                    className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 mb-10"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8 }}
                 >
-                    <div className="flex -space-x-2">
-                        {[1, 2, 3].map((i) => (
-                            <div
-                                key={i}
-                                className="w-6 h-6 rounded-full border-2 border-[#0a0a0c] bg-gradient-to-tr from-indigo-500 to-purple-500"
-                            />
-                        ))}
-                    </div>
-                    <span className="text-xs font-medium text-indigo-200">
-                        Join{" "}
-                        <span className="text-white font-bold">
-                            {count.enrolled}+
-                        </span>{" "}
-                        elite developers
-                    </span>
+                    <motion.div
+                        className="inline-flex items-center gap-2 px-3 py-1.5 sm:px-4 sm:py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-6 sm:mb-8"
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        transition={{ delay: 0.2 }}
+                    >
+                        <Sparkles className="w-3 h-3 sm:w-4 sm:h-4 text-cyan-400" />
+                        <span className="text-xs sm:text-sm text-gray-300">
+                            2025 Tech Conference Series
+                        </span>
+                    </motion.div>
                 </motion.div>
 
-                {/* Main Heading */}
                 <motion.h1
-                    initial={{ opacity: 0, filter: "blur(10px)", y: 20 }}
-                    animate={{ opacity: 1, filter: "blur(0px)", y: 0 }}
-                    transition={{ duration: 0.8 }}
-                    className="text-5xl md:text-7xl lg:text-8xl font-black tracking-tighter"
+                    className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl 2xl:text-8xl font-bold tracking-tight mb-4 sm:mb-6 px-2"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.3 }}
                 >
-                    <span className="inline-block bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-400">
-                        BUILD THE
+                    <span className="text-white">Where </span>
+                    <span className="bg-gradient-to-r from-purple-400 via-pink-500 to-cyan-400 bg-clip-text text-transparent block sm:inline">
+                        Innovation
                     </span>
                     <br />
-                    <span className="inline-block text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-600 animate-gradient-x">
-                        FUTURE WEB
+                    <span className="text-white">Meets </span>
+                    <span className="bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent block sm:inline">
+                        Inspiration
                     </span>
                 </motion.h1>
 
-                {/* Subtext */}
                 <motion.p
-                    {...fadeInUp}
-                    transition={{ delay: 0.2 }}
-                    className="mt-8 text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed"
+                    className="text-sm sm:text-base md:text-lg text-gray-400 max-w-2xl sm:max-w-3xl mx-auto mb-8 sm:mb-10 px-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
                 >
-                    A comprehensive journey through{" "}
-                    <span className="text-white">Fullstack Engineering</span>.
-                    Master the stack used by world-class teams at Vercel,
-                    Stripe, and Airbnb.
+                    Join the world's leading tech seminars and workshops.
+                    Connect with industry experts, learn cutting-edge
+                    technologies, and transform your career.
                 </motion.p>
 
-                {/* CTAs */}
                 <motion.div
-                    {...fadeInUp}
-                    transition={{ delay: 0.3 }}
-                    className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-6"
+                    className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 px-4"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
                 >
-                    <button className="group relative px-8 py-4 bg-white text-black rounded-full font-bold text-lg transition-transform hover:scale-105 active:scale-95">
-                        Start Learning Now
-                        <div className="absolute inset-0 bg-cyan-400 rounded-full blur-2xl opacity-0 group-hover:opacity-30 transition-opacity" />
-                    </button>
+                    <Link href="/events" className="w-full sm:w-auto">
+                        <PrimaryButton className="w-full sm:w-auto bg-gradient-to-r from-purple-600 to-cyan-600 hover:from-purple-700 hover:to-cyan-700 text-white px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-lg rounded-full group border-none">
+                            Explore Events
+                            <ArrowRight className="ml-2 w-4 h-4 sm:w-5 sm:h-5 group-hover:translate-x-1 transition-transform" />
+                        </PrimaryButton>
+                    </Link>
 
-                    <button className="flex items-center gap-3 px-8 py-4 rounded-full border border-white/10 hover:bg-white/5 transition-colors group">
-                        <div className="w-10 h-10 rounded-full bg-indigo-500/20 flex items-center justify-center group-hover:scale-110 transition-transform">
-                            <Play className="w-4 h-4 text-indigo-400 fill-indigo-400" />
-                        </div>
-                        <span className="font-semibold text-gray-300">
-                            View Curriculum
-                        </span>
-                    </button>
+                    <Link href="/speakers" className="w-full sm:w-auto">
+                        <PrimaryButton className="w-full sm:w-auto border border-white/20 bg-transparent text-white hover:bg-white/10 px-6 sm:px-8 py-4 sm:py-6 text-sm sm:text-lg rounded-full backdrop-blur-sm">
+                            Meet Speakers
+                        </PrimaryButton>
+                    </Link>
                 </motion.div>
 
-                {/* Tech Stack Bar */}
+                {/* Stats - Improved for mobile */}
                 <motion.div
-                    {...fadeInUp}
-                    transition={{ delay: 0.5 }}
-                    className="mt-24 pt-10 border-t border-white/5"
+                    className="mt-12 sm:mt-16 md:mt-20 grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-4 sm:gap-6 md:gap-8 px-2"
+                    initial={{ opacity: 0, y: 30 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.9 }}
                 >
-                    <p className="text-xs uppercase tracking-[0.2em] text-gray-500 font-bold mb-8">
-                        Powered by modern architecture
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-8 md:gap-16 opacity-40 grayscale hover:grayscale-0 transition-all duration-700">
-                        {[
-                            "Next.js",
-                            "TypeScript",
-                            "PostgreSQL",
-                            "Docker",
-                            "GraphQL",
-                        ].map((tech) => (
-                            <span
-                                key={tech}
-                                className="text-xl font-bold tracking-tighter text-white"
-                            >
-                                {tech}
-                            </span>
-                        ))}
-                    </div>
+                    {[
+                        { value: "50+", label: "Events", icon: Calendar },
+                        { value: "100+", label: "Speakers", icon: Users },
+                        { value: "10K+", label: "Attendees", icon: Globe },
+                        { value: "8", label: "Tech Tracks", icon: Sparkles },
+                    ].map((stat, index) => (
+                        <motion.div
+                            key={stat.label}
+                            className="text-center p-3 sm:p-4 rounded-xl sm:rounded-2xl bg-white/5 backdrop-blur-sm border border-white/10"
+                            whileHover={{ scale: 1.05 }}
+                            transition={{ type: "spring", stiffness: 300 }}
+                        >
+                            <div className="inline-flex items-center justify-center w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-lg sm:rounded-xl bg-gradient-to-br from-purple-500/20 to-cyan-500/20 border border-white/10 mb-2 sm:mb-3 mx-auto">
+                                <stat.icon className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6 text-cyan-400" />
+                            </div>
+                            <div className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
+                                {stat.value}
+                            </div>
+                            <div className="text-gray-400 text-xs sm:text-sm">
+                                {stat.label}
+                            </div>
+                        </motion.div>
+                    ))}
                 </motion.div>
             </div>
-
-            {/* Scroll Indicator */}
-            <motion.div
-                animate={{ y: [0, 10, 0] }}
-                transition={{ repeat: Infinity, duration: 2 }}
-                className="absolute bottom-10 left-1/2 -translate-x-1/2 hidden md:block"
-            >
-                <div className="w-[1px] h-12 bg-gradient-to-b from-cyan-400 to-transparent" />
-            </motion.div>
         </section>
     );
 }

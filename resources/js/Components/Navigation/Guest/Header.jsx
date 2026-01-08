@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 export default function Header() {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const navLinks = ["Home", "Listings", "Pages", "Blog", "Dashboard"];
+    const navLinks = ["Home", "Register", "Events"];
 
     return (
         <header className="bg-[#0f0f0f] text-white border-b border-gray-800 sticky top-0 z-50">
